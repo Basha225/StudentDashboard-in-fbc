@@ -1,10 +1,17 @@
+import Heading from "../../Common/Heading/Heading"
+import Search from "../../Common/Search/Search"
 import StudentData from "../../Data/Student"
 
 const Students = () => {
+    const searchProps = {
+        type : "search",
+        placeholder : "Search by name or email",
+        id : "search"
+    }
     return (
         <>
-            <h1>Student Management</h1>
-            <input type="search" id="std" placeholder="search by student name"/>
+            <Heading name = {"Students"} />
+            <Search searchProps ={searchProps} />
             <table border={1} cellSpacing={0} cellPadding={5}>
                 <thead>
                     <tr>
@@ -15,16 +22,17 @@ const Students = () => {
                     </tr>
                 </thead>
                 <tbody>
-                        {Object.values(StudentData).map((value , index) => {
-                            return (
+                        {
+                         StudentData.length >0  && StudentData.map((value , index) => (
+                            
                                 <tr key={value.id}>
                                     <td>{value.id}</td>
                                     <td>{value.name}</td>
                                     <td>{value.branch}</td>
                                     <td><button style={{color: "white" , backgroundColor : "red"}}>Delete</button></td>
                                 </tr>
-                            )
-                        })}
+                            
+                        ))}
                 </tbody>
             </table>
         </>
